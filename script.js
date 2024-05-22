@@ -1,6 +1,8 @@
 function len(name) {
   if (name.startsWith("pt")) { return 2 }
   if (name.startsWith("md")) { return 2 }
+  if (name.startsWith("B")) { return 1 }
+  if (name.startsWith("P")) { return 1 }
 }
 
 var orderNumber = 0
@@ -14,12 +16,19 @@ for (i = 0; i < orderRaw.length; i++) {
 }
 
 function play() {
-  if (orderNumber >= 1) {
-    let prevAud = document.getElementById(
-      order[(orderNumber + order.length - 1) % order.length]);
-    prevAud.onpause = null
-  }
+  console.log(order[(orderNumber + order.length - 1) % order.length]);
+  document.getElementById(order[(orderNumber + order.length - 1) % order.length]).onpause = null;
 
-  let aud = document.getElementById(order[orderNumber % order.length]).play();
-  aud.onpause = () => { orderNumber++; play(orderNumber + 1) };
+  let aud = document.getElementById(order[orderNumber % order.length]);
+  console.log(aud);
+  aud.play();
+  aud.onpause = () => { orderNumber++; play() };
+}
+
+function changeVolume() {
+  volume = Number(prompt("Volume 0-100")) / 100;
+  auds = document.getElementsByTagName("audio");
+  for (i = 0; i < auds.length; i++) {
+    auds[i].volume = volume;
+  }
 }
