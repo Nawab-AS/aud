@@ -1,8 +1,10 @@
 function len(name) {
-  if (name.startsWith("pt")) { return 2 }
+  if (name.startsWith("ctp")) { return 3 }
   if (name.startsWith("md")) { return 2 }
-  if (name.startsWith("B")) { return 1 }
-  if (name.startsWith("P")) { return 1 }
+  if (name.startsWith("om")) { return 2 }
+  if (name.startsWith("pt")) { return 2 }
+  if (name.startsWith("tid")) { return 3 }
+
 }
 
 var orderNumber = 0
